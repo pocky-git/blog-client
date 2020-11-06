@@ -1,0 +1,42 @@
+.header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 999;
+
+    .container {
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+
+            li {
+                a {
+                    display: block;
+                    padding: 0 20px;
+                    font-size: 16px;
+                    color: rgba(0, 0, 0, .85);
+                    line-height: 60px;
+                    transition: .3s;
+                }
+
+                &.active {
+                    a{
+                        background: #eee;
+                    }
+                }
+            }
+        }
+    }
+}

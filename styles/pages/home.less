@@ -1,0 +1,50 @@
+.index-page {
+    min-height: 100vh;
+    background: #f3f3f3;
+
+    .main-content {
+        padding: 70px 0;
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .left-content {
+                flex: 1;
+                background: #fff;
+                padding: 20px 20px 40px;
+                border-radius: 5px;
+                border: 1px solid #eee;
+
+                .blog-list {
+                    .title {
+                        font-size: 18px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .date {
+                        font-size: 16px;
+                        color: #ccc;
+                        margin: 10px 0;
+                    }
+
+                    .tags{
+                        margin-bottom: 10px;
+                    }
+
+                    .des {
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .right-content {
+                width: 300px;
+                margin-left: 10px;
+            }
+        }
+    }
+}
