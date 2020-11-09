@@ -23,15 +23,15 @@ const Header = ({router}) => {
         if(!searchText){
             return message.warning('博客名不能为空')
         }
-        router.push({pathname:'/',query:{searchText}})
+        router.push({pathname:'/search',query:{searchText}})
     }
 
     return(
         <div className='header'>
             <div className='container'>
                 <ul className='menu'>
-                    <li className={path==='/'?'active':''}><Link href='/'><a>博客首页</a></Link></li>
-                    <li className={path==='/about'?'active':''}><Link href='/about'><a>关于我</a></Link></li>
+                    <li><Link href='/'><a>博客首页</a></Link></li>
+                    <li><Link href='/about'><a>关于我</a></Link></li>
                 </ul>
                 <div className="search">
                     <Search 

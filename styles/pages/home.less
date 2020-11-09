@@ -25,10 +25,19 @@
                         text-overflow: ellipsis;
                     }
 
-                    .date {
+                    .detail {
                         font-size: 16px;
-                        color: #ccc;
+                        color: #bbb;
                         margin: 10px 0;
+                        display: flex;
+                        .item{
+                            &:first-child{
+                                margin-right: 20px;
+                            }
+                            span{
+                                margin: 0 3px;
+                            }
+                        }
                     }
 
                     .tags{
@@ -36,7 +45,18 @@
                     }
 
                     .des {
-                        font-size: 16px;
+                        font-size: 14px;
+                        color: #bbb;
+                    }
+
+                    .more{
+                        color: #91d5ff;
+                        span{
+                            margin: 0 5px;
+                        }
+                        &:hover{
+                            color: #1890ff;
+                        }
                     }
                 }
             }

@@ -2,6 +2,10 @@ import axios from 'axios'
 
 const BASE_URL = 'http://localhost:4000'
 
-export const reqBlog = () => axios.get(BASE_URL + '/getBlog')
+export const reqBlog = tagId => axios.get(BASE_URL + '/getBlog',{params:{tagId}})
 
 export const reqTag = () => axios.get(BASE_URL + '/getTag')
+
+export const reqSearch = searchText => axios.get(BASE_URL + '/searchBlog',{params:{searchText}})
+
+export const reqBlogDetail = id => axios.get(BASE_URL + '/getBlogDetail',{params:{id}})
