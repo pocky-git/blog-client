@@ -7,23 +7,26 @@ import {
 
 import '../styles/components/my.less'
 
-const My = () => {
+const My = ({about}) => {
+    const color = ['magenta','red','volcano','orange']
+
     return(
         <div className='my'>
             <div className="avantar">
-                <img src="/avantar.jpg" alt=""/>
+                <img src={about.avantar} alt=""/>
             </div>
             <div className="nickname">
-                Pocky
+                {about.nickname}
             </div>
             <div className="job">
-                前端开发
+                {about.description}
             </div>
             <div className="tags">
-                <Tag color="magenta">React</Tag>
-                <Tag color="red">Node</Tag>
-                <Tag color="volcano">Next.js</Tag>
-                <Tag color="orange">微信小程序</Tag>
+                {
+                    about.tags.map((tag,index)=>(
+                        <Tag className="tag" key={index} color={color[index%4]}>{tag}</Tag>
+                    ))
+                }
             </div>
             <Divider>社交帐号</Divider>
             <div className="social">

@@ -9,3 +9,5 @@ export const reqTag = () => axios.get(BASE_URL + '/getTag')
 export const reqSearch = searchText => axios.get(BASE_URL + '/searchBlog',{params:{searchText}})
 
 export const reqBlogDetail = id => axios.get(BASE_URL + '/getBlogDetail',{params:{id}})
+
+export const reqAbout = () => axios.get(BASE_URL + '/getAbout')

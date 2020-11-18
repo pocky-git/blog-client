@@ -5,13 +5,13 @@ import { CalendarOutlined, RightOutlined, CopyOutlined, TagsOutlined } from '@an
 import { withRouter } from 'next/router'
 
 import '../styles/pages/home.less'
-import { reqBlog, reqTag } from './api'
+import { reqBlog, reqTag, reqAbout } from './api'
 import getDate from '../utils/getDate'
 import Header from '../components/header'
 import My from '../components/my'
 import Category from '../components/category'
 
-const Index = ({ blogs, tags }) => {
+const Index = ({ blogs, tags, about }) => {
   const topList = blogs.filter(blog => blog.isTop).sort((prev, next) => new Date(next.create_time).getTime() - new Date(prev.create_time).getTime())
   const bottomList = blogs.filter(blog => !blog.isTop).sort((prev, next) => new Date(next.create_time).getTime() - new Date(prev.create_time).getTime())
   const filterBlogs = [...topList, ...bottomList]
@@ -66,7 +66,7 @@ const Index = ({ blogs, tags }) => {
             />
           </div>
           <div className="right-content">
-            <My />
+            <My about={about}/>
             <Category tags={tags} />
           </div>
         </div>
@@ -90,11 +90,16 @@ Index.getInitialProps = async (context) => {
   }
   const blogData = blogResult.data
 
-  if (blogData.code === 0 && tagData.code === 0) {
+  // 获取个人资料
+  const aboutResult = await reqAbout()
+  const aboutData = aboutResult.data
+
+  if (blogData.code === 0 && tagData.code === 0 && aboutData.code === 0) { 
     const blogs = blogData.data
     const tags = tagData.data
+    const about = aboutData.data
     return {
-      blogs, tags
+      blogs, tags, about
     }
   }
 
