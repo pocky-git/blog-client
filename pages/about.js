@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import 'braft-editor/dist/output.css'
 
 import { reqTag,reqAbout } from './api'
 import Header from '../components/header'
@@ -15,9 +16,7 @@ const About = ({tags,about}) => {
             <Header />
             <div className="main-content">
                 <div className="container">
-                <div className="left-content" dangerouslySetInnerHTML={{__html:about.content}}>
-                    
-                </div>
+                <div className="left-content braft-output-content" dangerouslySetInnerHTML={{__html:about.content}}></div>
                 <div className="right-content">
                     <My about={about}/>
                     <Category tags={tags}/>

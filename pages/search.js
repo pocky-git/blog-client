@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { List, Tag } from 'antd'
-import { CalendarOutlined, RightOutlined, CopyOutlined, TagsOutlined } from '@ant-design/icons'
+import { CalendarOutlined, RightOutlined, CopyOutlined } from '@ant-design/icons'
 import { withRouter } from 'next/router'
 
 import '../styles/pages/home.less'
@@ -48,7 +48,6 @@ const Search = ({ blogs, tags, about }) => {
                                             <span>{getDate(item.create_time)}</span>
                                         </div>
                                         <div className="item">
-                                            <TagsOutlined />
                                             {
                                                 item.tags.map(tagId => (
                                                     <Tag key={tagId}>
