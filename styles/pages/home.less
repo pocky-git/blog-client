@@ -1,6 +1,5 @@
 .index-page {
     min-height: 100vh;
-    background: #f3f3f3;
 
     .main-content {
         padding: 70px 0;
@@ -16,6 +15,7 @@
                 padding: 20px 20px 40px;
                 border-radius: 5px;
                 border: 1px solid #eee;
+                position: relative;
 
                 .blog-list {
                     .title {
@@ -30,11 +30,11 @@
                         color: #bbb;
                         .item{
                             margin: 10px 0;
-                            &:first-child{
-                                margin-right: 20px;
-                            }
-                            span{
-                                margin: 0 3px;
+                            .item-block{
+                                margin-right: 15px;
+                                .icon{
+                                    margin-right: 3px;
+                                }
                             }
                         }
                     }
@@ -65,5 +65,28 @@
                 margin-left: 10px;
             }
         }
+    }
+}
+
+@media (max-width:768px){
+    .index-page .main-content .container{
+        display: block;
+    }
+    .index-page .main-content .container .left-content .menu-mobile{
+        display: block;
+    }
+    .index-page .main-content .container .left-content .ant-list-item{
+        display: block;
+        padding: 16px 0;
+    }
+    .index-page .main-content .container .left-content .ant-list-item .ant-list-item-extra{
+        margin: 10px 0 0;
+        text-align: right;
+    }
+    .index-page .main-content .container .right-content{
+        display: none;
+    }
+    .index-page .main-content .container .left-content .blog-list .title{
+        font-size: 16px;
     }
 }

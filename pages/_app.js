@@ -3,7 +3,7 @@ import '../styles/pages/globals.less'
 
 function MyApp({ Component, pageProps }) {
   return (
-      <Component {...pageProps} />
+    <Component {...pageProps} />
   )
 }
 

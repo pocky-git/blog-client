@@ -1,71 +1,33 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import { List, Tag } from 'antd'
-import { CalendarOutlined, RightOutlined, CopyOutlined } from '@ant-design/icons'
-import { withRouter } from 'next/router'
+import { message } from 'antd'
 
 import '../styles/pages/home.less'
-import { reqBlog, reqTag, reqAbout } from './api'
-import getDate from '../utils/getDate'
+import { reqBlog, reqTag, reqAbout } from '../api'
 import Header from '../components/header'
 import My from '../components/my'
 import Category from '../components/category'
+import BlogList from '../components/blog-list'
+import Loading from '../components/loading'
+import MenuMobile from '../components/menu-mobile'
 
 const Index = ({ blogs, tags, about }) => {
-  const topList = blogs.filter(blog => blog.isTop).sort((prev, next) => new Date(next.create_time).getTime() - new Date(prev.create_time).getTime())
-  const bottomList = blogs.filter(blog => !blog.isTop).sort((prev, next) => new Date(next.create_time).getTime() - new Date(prev.create_time).getTime())
-  const filterBlogs = [...topList, ...bottomList]
-
   return (
     <div className='index-page'>
       <Head>
         <title>博客首页</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="icon" href="/favicon.ico" mce_href="/favicon.ico" type="image/x-icon" />
       </Head>
       <Header />
       <div className="main-content">
         <div className="container">
+          <MenuMobile tags={tags}/>
           <div className="left-content">
-            <List
-              className="blog-list"
-              itemLayout="vertical"
-              size="large"
-              pagination={{
-                pageSize: 10,
-              }}
-              dataSource={filterBlogs}
-              renderItem={item => (
-                <List.Item
-                  key={item._id}
-                  extra={<Link href={'/detail?id=' + item._id}><a className='more'><CopyOutlined />查看全文<RightOutlined /></a></Link>}
-                >
-                  <div className="title">
-                    {item.isTop ? <Tag color="blue">置顶</Tag> : null}{item.title}
-                  </div>
-                  <div className="detail">
-                    <div className="item">
-                      <CalendarOutlined />
-                      <span>{getDate(item.create_time)}</span>
-                    </div>
-                    <div className="item">
-                      {
-                        item.tags.map(tagId => (
-                          <Tag key={tagId}>
-                            {tags.find(tag => tag._id === tagId).name}
-                          </Tag>
-                        ))
-                      }
-                    </div>
-                  </div>
-                  <div className="des">
-                    {item.description}
-                  </div>
-                </List.Item>
-              )}
-            />
+            <BlogList blogs={blogs} tags={tags}/>
+            <Loading />
           </div>
           <div className="right-content">
-            <My about={about}/>
+            <My about={about} />
             <Category tags={tags} />
           </div>
         </div>
@@ -80,11 +42,11 @@ Index.getInitialProps = async (context) => {
   const tagData = tagResult.data
 
   // 获取博客列表
-  const {tagId} = context.query
+  const { tagId } = context.query
   let blogResult
-  if(tagId){
+  if (tagId) {
     blogResult = await reqBlog(tagId)
-  }else{
+  } else {
     blogResult = await reqBlog()
   }
   const blogData = blogResult.data
@@ -93,16 +55,18 @@ Index.getInitialProps = async (context) => {
   const aboutResult = await reqAbout()
   const aboutData = aboutResult.data
 
-  if (blogData.code === 0 && tagData.code === 0 && aboutData.code === 0) { 
+  if (blogData.code === 0 && tagData.code === 0 && aboutData.code === 0) {
     const blogs = blogData.data
     const tags = tagData.data
     const about = aboutData.data
     return {
       blogs, tags, about
     }
+  } else {
+    message.error('页面加载错误')
   }
 
 }
 
-export default withRouter(Index)
+export default Index
 

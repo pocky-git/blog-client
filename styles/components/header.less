@@ -13,9 +13,8 @@
         justify-content: space-between;
         align-items: center;
 
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
+        .toggle-menu{
+            display: none;
         }
 
         .menu {
@@ -37,5 +36,19 @@
 
             }
         }
+    }
+}
+
+@media (max-width:768px){
+    .header .container .toggle-icon{
+        font-size: 20px;
+        width: 40px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .header .container .menu{
+        display: none;
     }
 }

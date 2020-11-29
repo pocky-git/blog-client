@@ -1,17 +1,70 @@
 .detail-content{
-    padding-top: 16px;
+    padding-top: 20px;
+    position: relative;
     .title{
-        font-size: 20px;
+        font-size: 22px;
         text-align: center;
+        font-weight: bold;
     }
-    .date{
-        margin: 10px 0;
+    .details{
+        margin: 25px 0;
         font-size: 16px;
         color: #bbb;
         text-align: center;
+        .details-item{
+            margin: 0 8px;
+            .icon{
+                margin-right: 3px;
+            }
+        }
     }
     .description{
         font-size: 16px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
+    }
+    .like{
+        position: fixed;
+        top: 150px;
+        margin-left: -90px;
+        text-align: center;
+        .icon{
+            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: .3s;
+            &:hover{
+                color: #1890ff;
+            }
+        }
+        .like-num{
+            margin-top: 5px;
+            font-size: 16px;
+            color: #fff;
+        }
+    }
+}
+
+@media (max-width:768px){
+    .detail-content .details{
+        margin: 10px 0;
+    }
+    .detail-content .like{
+        right: 15px;
+        top: auto;
+        bottom: 100px;
+    }
+    .detail-content .like .icon,
+    .detail-content .like .icon:hover{
+        background: #1890ff;
+        color: #fff;
+    }
+    .detail-content .like .like-num{
+        color: rgba(0, 0, 0, .85);
     }
 }

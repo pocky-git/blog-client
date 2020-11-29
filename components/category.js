@@ -6,6 +6,8 @@ import { RightOutlined } from '@ant-design/icons'
 import '../styles/components/category.less'
 
 const Category = ({ tags,router }) => {
+    const {tagId} = router.query
+
     return (
         <div className="category">
             <Card 
@@ -16,11 +18,11 @@ const Category = ({ tags,router }) => {
                 bordered={false}
             >
                 <List
-                    size="small"
+                    size="default"
                     dataSource={tags}
                     renderItem={tag => (
                         <List.Item 
-                            className='category-item'
+                            className={tagId===tag._id?'category-item active':'category-item'}
                             key={tag._id}
                             extra={<RightOutlined />}
                             onClick={()=>router.push({pathname:'/',query:{tagId:tag._id}})}
