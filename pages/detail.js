@@ -1,11 +1,11 @@
 import {useState} from 'react'
 import Head from 'next/head'
-import { CalendarOutlined, FireOutlined, LikeOutlined } from '@ant-design/icons'
-import { message, BackTop } from 'antd'
+import { CalendarOutlined, FireOutlined, LikeOutlined, CaretUpOutlined } from '@ant-design/icons'
+import { message, BackTop, Badge } from 'antd'
+import moment from 'moment'
 
 import '../styles/pages/detail.less'
 import { reqTag, reqBlogDetail, reqAbout, reqLike } from '../api'
-import getDate from '../utils/getDate'
 import Header from '../components/header'
 import My from '../components/my'
 import Category from '../components/category'
@@ -45,15 +45,25 @@ const Detail = ({ tags, detail, about }) => {
                         <div className="detail-content">
                             <div className="title">{title}</div>
                             <div className="details">
-                                <span className="details-item"><CalendarOutlined className="icon" />{getDate(create_time)}</span>
+                                <span className="details-item"><CalendarOutlined className="icon" />{moment(create_time).format('YYYY-MM-DD HH:mm')}</span>
                                 <span className="details-item"><FireOutlined className="icon" />{count}</span>
                             </div>
                             <div className="description">{description}</div>
                             <Markdown content={content}/>
-                            <div className="like">
+                            <Badge 
+                                className="like" 
+                                count={likeNum}
+                                overflowCount={99}
+                                style={{
+                                    background: '#b2bac2',
+                                    borderColor: '#b2bac2',
+                                }}
+                            >
                                 <LikeOutlined onClick={handleLike} className="icon"/>
-                                <div className="like-num">{likeNum}</div>
-                            </div>
+                            </Badge>
+                            <BackTop>
+                                <CaretUpOutlined className="backtop" />
+                            </BackTop>
                         </div>
                         <Loading />
                     </div>
@@ -61,7 +71,6 @@ const Detail = ({ tags, detail, about }) => {
                         <My about={about} />
                         <Category tags={tags} />
                     </div>
-                    <BackTop />
                 </div>
             </div>
         </div>

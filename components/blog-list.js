@@ -1,8 +1,7 @@
 import { List, Tag } from 'antd'
 import { CalendarOutlined, RightOutlined, CopyOutlined, FireOutlined, LikeOutlined } from '@ant-design/icons'
 import Link from 'next/link'
-
-import getDate from '../utils/getDate'
+import moment from 'moment'
 
 const BlogList = ({blogs,tags}) => {
     const topList = blogs.filter(blog => blog.isTop).sort((prev, next) => new Date(next.create_time).getTime() - new Date(prev.create_time).getTime())
@@ -31,7 +30,7 @@ const BlogList = ({blogs,tags}) => {
                             <div className="item">
                                 <span className="item-block">
                                     <CalendarOutlined className="icon" />
-                                    <span>{getDate(item.create_time)}</span>
+                                    <span>{moment(item.create_time).format('YYYY-MM-DD HH:mm')}</span>
                                 </span>
                                 <span className="item-block">
                                     <LikeOutlined className="icon" />

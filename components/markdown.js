@@ -1,6 +1,6 @@
 import marked from 'marked'
 import hljs from "highlight.js"
-import 'highlight.js/styles/monokai-sublime.css'
+import 'highlight.js/styles/github.css'
 
 import '../styles/components/markdown.less'
 
